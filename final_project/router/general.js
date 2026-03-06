@@ -40,7 +40,7 @@ public_users.get('/isbn/:isbn', function (req, res) {
 
 // Get book details based on author
 public_users.get('/author/:author', function (req, res) {
-  const author = req.params.author.toLocaleLowerCase()
+  const author = req.params.author.toLowerCase()
   const bookKeys = Object.keys(books);
   let matchedBooks = [];
 
@@ -59,7 +59,7 @@ public_users.get('/author/:author', function (req, res) {
 
 // Get all books based on title
 public_users.get('/title/:title', function (req, res) {
-  const title = req.params.title.toLocaleLowerCase()
+  const title = req.params.title.toLowerCase()
   const bookKeys = Object.keys(books);
   let matchedBooks = []
 
@@ -90,17 +90,17 @@ public_users.get('/review/:isbn', function (req, res) {
 
 async function getAllBooks() {
   try {
-     const response = await axios.get('http://localhost:3000/');
+    const response = await axios.get('http://localhost:3000/');
     return response.data;
   } catch (error) {
-     return error.message;
+    return error.message;
   }
 }
- 
+
 async function getBookByISBN(isbn) {
   try {
     const response = await axios.get(`http://localhost:3000/isbn/${isbn}`);
-    return response.data;  
+    return response.data;
   } catch (error) {
     return error.response ? error.response.data : error.message;
   }
@@ -109,7 +109,7 @@ async function getBookByISBN(isbn) {
 async function getBooksByAuthor(author) {
   try {
     const response = await axios.get(`http://localhost:3000/author/${author}`);
-    return response.data; 
+    return response.data;
   } catch (error) {
     return error.response ? error.response.data : error.message;
   }
@@ -118,7 +118,7 @@ async function getBooksByAuthor(author) {
 async function getBooksByTitle(title) {
   try {
     const response = await axios.get(`http://localhost:3000/title/${title}`);
-    return response.data; 
+    return response.data;
   } catch (error) {
     return error.response ? error.response.data : error.message;
   }
